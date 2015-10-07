@@ -8,7 +8,7 @@ import (
 	"net/http/httputil"
 	"net/url"
 	"time"
-
+    "crypto/tls"
 	"github.com/mackerelio/mackerel-agent/logging"
 	"github.com/mackerelio/mackerel-agent/version"
 )
@@ -90,7 +90,9 @@ func (api *API) do(req *http.Request) (resp *http.Response, err error) {
     tr := &http.Transport{
         TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
     }
-	client := &http.Client{Transport: tr} // same as http.DefaultClient
+	//client := &http.Client{Transport: tr} // same as http.DefaultClient
+	client := &http.Client{} // same as http.DefaultClient
+    client.Transport = tr
 	client.Timeout = apiRequestTimeout
 	resp, err = client.Do(req)
 	if err != nil {

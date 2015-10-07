@@ -13,7 +13,7 @@ test: lint
 	go test $(TESTFLAGS) ./...
 
 build: deps
-	go build -ldflags=$(BUILD_LDFLAGS) \
+	go build -installsuffix -ldflags=$(BUILD_LDFLAGS) \
 	-o build/$(BIN)
 
 run: build

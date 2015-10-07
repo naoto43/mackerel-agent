@@ -8,7 +8,7 @@ import (
 	"net/url"
 	"strings"
 	"time"
-
+    "crypto/tls"
 	"github.com/mackerelio/mackerel-agent/logging"
 )
 
