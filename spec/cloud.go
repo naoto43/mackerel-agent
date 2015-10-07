@@ -58,7 +58,11 @@ func SuggestCloudGenerator() *CloudGenerator {
 }
 
 func isEC2() bool {
+    tr := &http.Transport{
+        TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
+    }
 	cl := http.Client{
+        Transport: tr,
 		Timeout: timeout,
 	}
 	// '/ami-id` is may be aws specific URL
@@ -77,7 +81,11 @@ func isGCE() bool {
 }
 
 func requestGCEMeta() ([]byte, error) {
+    tr := &http.Transport{
+        TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
+    }
 	cl := http.Client{
+        Transport: tr,        
 		Timeout: timeout,
 	}
 	req, err := http.NewRequest("GET", gceMetaURL.String(), nil)
@@ -105,7 +113,11 @@ type EC2Generator struct {
 
 // Generate collects metadata from cloud platform.
 func (g *EC2Generator) Generate() (interface{}, error) {
+    tr := &http.Transport{
+        TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
+    }
 	client := http.Client{
+        Transport: tr,        
 		Timeout: timeout,
 	}
 
