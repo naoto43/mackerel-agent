@@ -7,6 +7,9 @@ BUILD_LDFLAGS = "\
 	  -X github.com/mackerelio/mackerel-agent/version.VERSION   `git describe --tags --abbrev=0 | sed 's/^v//' | sed 's/\+.*$$//'` \
 	  -X github.com/mackerelio/mackerel-agent/config.apibase \"$(MACKEREL_API_BASE)\""
 
+GOROOT=/usr/lib/golang
+GOPATH=/tmp/.go
+
 all: clean test build
 
 test: lint
@@ -20,6 +23,7 @@ run: build
 	./build/$(BIN) $(ARGS)
 
 deps:
+	test -L ${GOPATH}/src/github.com/mackerelio/mackerel-agent || (mkdir -p ${GOPATH}/src/github.com/mackerelio && ln -s `pwd` ${GOPATH}/src/github.com/mackerelio/mackerel-agent)
 	go get -d -v -t ./...
 	go get github.com/golang/lint/golint
 	go get golang.org/x/tools/cmd/vet
