@@ -1,0 +1,3 @@
+mdkir -p /tmp/.go/src/github.com/mackerelio && ln -s `pwd` /tmp/.go/src/github.com/mackerelio/mackerel-agent
+sudo make build GOROOT=/usr/lib/golang  GOPATH=/tmp/.go
+
