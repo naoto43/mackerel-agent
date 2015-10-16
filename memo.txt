@@ -1,3 +1,5 @@
 mdkir -p /tmp/.go/src/github.com/mackerelio && ln -s `pwd` /tmp/.go/src/github.com/mackerelio/mackerel-agent
 sudo make build GOROOT=/usr/lib/golang  GOPATH=/tmp/.go
+# for i386, yum install golang-pkg-linux-386
+# sudo make build GOROOT=/usr/lib/golang  GOPATH=/tmp/.go GOOS=linux GOARCH=386 
 
